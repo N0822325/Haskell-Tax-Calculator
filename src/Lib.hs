@@ -12,7 +12,9 @@ tax income = taxed
      | otherwise          = income - 12500
 
 
-    taxed = income - tax -- End Income (Taxed)
+    taxed -- End Income (Taxed)
+     | income >= 0      = income - tax
+     | otherwise        = 0
 
     tax = tax1 + tax2 + tax3 -- Overall Tax
 

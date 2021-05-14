@@ -1,11 +1,28 @@
 module Main where
+
 import Test.HUnit
+import Test.QuickCheck
 import Lib
 
 main :: IO ()
 main = do
+  quickCheck prop_check_negative
+  quickCheck prop_check_taxDeduct
+
   results <- runTestTT allTests
   print results
+
+prop_check_negative :: Float -> Bool
+prop_check_negative income = tax income >= 0
+
+prop_check_taxDeduct :: Float -> Bool
+prop_check_taxDeduct income = result
+  where
+    result
+      | income < 0        = True
+      | income <= 12500   = (tax income) == income
+      | otherwise         = (tax income) < income
+
 
 test1 :: Test -- Min Case (untaxable)
 test1 = TestCase (assertEqual "10,000" 10000 (tax 10000))
