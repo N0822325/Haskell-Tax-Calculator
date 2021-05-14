@@ -12,10 +12,10 @@ main = do
   results <- runTestTT allTests
   print results
 
-prop_check_negative :: Float -> Bool
+prop_check_negative :: Float -> Bool -- Check if negative
 prop_check_negative income = tax income >= 0
 
-prop_check_taxDeduct :: Float -> Bool
+prop_check_taxDeduct :: Float -> Bool -- Testing Tax Deduction Generalalities
 prop_check_taxDeduct income = result
   where
     result
